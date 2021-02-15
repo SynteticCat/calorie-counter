@@ -39,7 +39,40 @@
                         </ul>
                     </div>
 
-                    <div class="form__item"></div>
+                    <fieldset class="form__item form__parameters" name="form__parameters">
+                        <legend сlass="parameters__heading">Физические параметры</legend>
+                        <ul class="parameters__group">
+                            <li class="parameter__item">
+                                <div class="parameter__heading">  
+                                    <label for="age">Возраст</label>
+                                    <span>лет</span>
+                                </div>
+                                <div class="input__wrapper">  
+                                    <input id="age" name="age" type="text" maxlength="3" placeholder="0" inputmode="decimal" required>
+                                </div>
+                            </li>
+
+                            <li class="parameter__item">
+                                <div class="parameter__heading">  
+                                    <label for="height">Рост</label>
+                                    <span>см</span>
+                                </div>
+                                <div class="input__wrapper">  
+                                    <input id="height" name="height" type="text" maxlength="3" placeholder="0" inputmode="decimal" required>
+                                </div>
+                            </li>
+
+                            <li class="parameter__item">
+                                <div class="parameter__heading">  
+                                    <label>Вес</label>
+                                    <span>кг</span>
+                                </div>
+                                <div class="input__wrapper">  
+                                    <input id="weight" name="weight" type="text" maxlength="3" placeholder="0" inputmode="decimal" required>
+                                </div>
+                            </li>
+                        </ul>
+                    </fieldset>
 
                     <div class="form__item"></div>
                 </form>
