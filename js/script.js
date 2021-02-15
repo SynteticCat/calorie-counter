@@ -18,7 +18,13 @@ const components = {
     },
     calc: {
         submitBtn: document.getElementById('form__submit-btn'),
-        resetBtn: document.getElementById('form__reset-btn'),
+        resetBtn: document.getElementById('form__reset-btn')
+    },
+    counter: {
+        counterResult: document.querySelector('.counter__result'),
+        caloriesNormal: document.querySelector('.calories-normal'),
+        caloriesMinimal: document.querySelector('.calories-minimal'),
+        caloriesMaximal: document.querySelector('.calories-maximal')
     }
 };
 
@@ -47,7 +53,7 @@ const state = {
     activity: defaults.activity.minimal,
     canCalculate: false,
     canReset: false,
-    showInfo: false
+    showCount: false
 };
 
 const updateActions = () => {
@@ -58,6 +64,8 @@ const updateActions = () => {
     const canCalculate = state.parameters.age && state.parameters.height && state.parameters.weight;
     state.canCalculate = canCalculate;
     components.calc.submitBtn.disabled = !canCalculate;
+
+    components.counter.counterResult.classList.toggle('counter__result--hidden', !state.showCount);
 };
 
 // inits
@@ -121,8 +129,40 @@ const initActivity = () => {
 
 const initActions = () => {
     components.calc.submitBtn.onclick = () => {
-        alert('hi');
+        const updateCounter = () => {
+            const coef = {
+                [defaults.activity.minimal]: 1.2,
+                [defaults.activity.low]: 1.375,
+                [defaults.activity.medium]: 1.55,
+                [defaults.activity.high]: 1.725,
+                [defaults.activity.maximal]: 1.9
+            };
+
+            const tmpWeight = state.parameters.weight * 10;
+            const tmpHeight = state.parameters.height * 6.25;
+            const tmpAge = state.parameters.age * 5;
+            let N = tmpWeight + tmpHeight - tmpAge;
+
+            N += (state.gender === defaults.gender.male) ? 5 : -161;
+            N *= coef[state.activity];
+
+            const caloriesNormal = N.toFixed(0);
+            const caloriesMinimal = (N - N*0.15).toFixed(0);
+            const caloriesMaximal = (N + N*0.15).toFixed(0);
+
+            components.counter.caloriesNormal.innerHTML = caloriesNormal;
+            components.counter.caloriesMinimal.innerHTML = caloriesMinimal;
+            components.counter.caloriesMaximal.innerHTML = caloriesMaximal;
+        };
+
+        if (!state.showCount) {
+            state.showCount = true;
+            components.counter.counterResult.classList.toggle('counter__result--hidden', false);
+        }
+
+        updateCounter();
     };
+
     components.calc.resetBtn.onclick = () => {
         components.gender.maleInput.checked = true;
         state.gender = defaults.gender.male;
@@ -138,7 +178,8 @@ const initActions = () => {
 
         components.activity.minimal.checked = true;
         state.activity = defaults.activity.minimal;
-        
+
+        state.showCount = false;
         updateActions();
     };
 };
@@ -150,4 +191,9 @@ window.onload = () => {
     initActivity();
     updateActions();
     initActions();
+
+    form = document.querySelector(".counter__form");
+    form.addEventListener('submit', (event) => { 
+        event.preventDefault();
+    });
 };
