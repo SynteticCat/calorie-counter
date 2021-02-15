@@ -33,6 +33,7 @@
     --color-text-black: #000;
     --color-gray: #9e9e9e;
     --color-gray-darkest: #7b7b7b;
+    --color-gray-light: #bdbdbd;
 }
 
 html,
@@ -69,6 +70,10 @@ ul {
 
 label {
     cursor: pointer;
+}
+
+p {
+    margin: 0;
 }
 
 .page {
@@ -121,6 +126,8 @@ label {
     line-height: 41px;
     margin: 0;
     margin-bottom: 16px;
+    font-weight: 700;
+    font-style: normal;
 }
 
 .switcher {
@@ -260,4 +267,67 @@ fieldset.form__parameters legend {
     font-size: 18px;
     line-height: 30px;
     color: var(--color-gray);
+}
+
+/* activities */
+.radio {
+    margin-bottom: 15px;
+    user-select: none;
+}
+
+.radio__wrapper {
+    position: relative;
+}
+
+.radio__wrapper input[type="radio"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border: 0;
+    clip: rect(0 0 0 0);
+    -webkit-clip-path: inset(100%);
+    clip-path: inset(100%);
+}
+
+.radio__wrapper label {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    line-height: 26px;
+    cursor: pointer;
+    transition: .3s ease;
+    transition-property: color;
+}
+
+.radio__wrapper label:hover {
+    color: var(--color-accent);
+}
+
+.radio__wrapper label::before {
+    content: '';
+    width: 24px;
+    height: 24px;
+    display: block;
+    background-image: url(../img/icon-radio-empty.svg);
+    margin-right: 8px;
+    transition: 0.3s ease;
+    transition-property: background;
+}
+
+.radio__wrapper input[type="radio"]:checked + label {
+    color: var(--color-accent);
+}
+
+.radio__wrapper input[type="radio"]:checked + label::before {
+    background-image: url(../img/icon-radio-checked.svg);
+}
+
+.radio .activity__description {
+    margin-left: 32px;
+    margin-top: 3px;
+    color: var(--color-gray-light);
 }

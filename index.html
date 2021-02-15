@@ -74,7 +74,50 @@
                         </ul>
                     </fieldset>
 
-                    <div class="form__item"></div>
+                    <fieldset class="form__item activity__kinds">
+                        <legend class="heading">Физическая активность</legend>
+                        <ul class="radios__group">
+                            <li class="radio">
+                                <div class="radio__wrapper">
+                                    <input id="activity-minimal" value="minimal" type="radio" name="activity" checked required>
+                                    <label for="activity-minimal">Минимальная</label>
+                                </div>
+                                <p class="activity__description">Сидячая работа и нет физических нагрузок</p>
+                            </li>
+
+                            <li class="radio">
+                                <div class="radio__wrapper">
+                                    <input id="activity-low" value="low" type="radio" name="activity" required>
+                                    <label for="activity-low">Низкая</label>
+                                </div>
+                                <p class="activity__description">Редкие, нерегулярные тренировки, активность в быту</p>
+                            </li>
+
+                            <li class="radio">
+                                <div class="radio__wrapper">
+                                    <input id="activity-medium" value="medium" type="radio" name="activity" required>
+                                    <label for="activity-medium">Средняя</label>
+                                </div>
+                                <p class="activity__description">Тренировки 3-5 раз в неделю</p>
+                            </li>
+
+                            <li class="radio">
+                                <div class="radio__wrapper">
+                                    <input id="activity-high" value="high" type="radio" name="activity" required>
+                                    <label for="activity-high">Высокая</label>
+                                </div>
+                                <p class="activity__description">Тренировки 6-7 раз в неделю</p>
+                            </li>
+
+                            <li class="radio">
+                                <div class="radio__wrapper">
+                                    <input id="activity-maximum" value="maximum" type="radio" name="activity" required>
+                                    <label for="activity-maximum">Очень высокая</label>
+                                </div>
+                                <p class="activity__description">Больше 6 тренировок в неделю и физическая работа</p>
+                            </li>
+                        </ul>
+                    </fieldset>
                 </form>
             </article>
             <section class="">
