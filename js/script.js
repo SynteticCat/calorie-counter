@@ -28,7 +28,7 @@ const components = {
     }
 };
 
-// state
+// data
 const defaults = {
     gender: {
         male: components.gender.maleInput.value,
@@ -43,6 +43,7 @@ const defaults = {
     }
 };
 
+// state
 const state = {
     gender: defaults.gender.male,
     parameters: {
@@ -56,6 +57,7 @@ const state = {
     showCount: false
 };
 
+// update actions
 const updateActions = () => {
     const canReset = state.parameters.age || state.parameters.height || state.parameters.weight;
     state.canReset = canReset;
@@ -69,6 +71,13 @@ const updateActions = () => {
 };
 
 // inits
+const initForm = () => {
+    form = document.querySelector(".counter__form");
+    form.addEventListener('submit', (event) => { 
+        event.preventDefault();
+    });
+};
+
 const initGender = () => {
     components.gender.maleInput.checked = true;
     components.gender.maleInput.onclick = () => {
@@ -186,14 +195,10 @@ const initActions = () => {
 
 // main
 window.onload = () => {
+    initForm();
     initGender();
     initParameters();
     initActivity();
     updateActions();
     initActions();
-
-    form = document.querySelector(".counter__form");
-    form.addEventListener('submit', (event) => { 
-        event.preventDefault();
-    });
 };
